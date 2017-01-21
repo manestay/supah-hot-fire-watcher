@@ -7,7 +7,7 @@ appClarifai = ClarifaiApp("gxZl82Rccj9BDbO1py-zze9x2yXllO4K8wgtDfUv", "71dgic1At
 
 
 
-  
+
  
 
 
@@ -17,6 +17,11 @@ app.config["DEBUG"] = True  # Only include this while you are testing your app
 
 THRESHOLD = .75
 fire_keywords = set(["flame", "fire", "smoke", "heat", "explosion"])
+
+
+
+
+
 
 #default home page
 @app.route("/")
@@ -46,6 +51,7 @@ def checkfire():
         if name in fire_keywords: #and prob > THRESHOLD:
             print "success"
             print name
+            #write to a textfile?
             return render_template("firetriggered.html")
 
     #print("entered loop")
@@ -68,6 +74,7 @@ def checkfire():
 def nofire():
     return render_template("nofire.html")
 
+
 @app.route("/nopeople")
 def nopeople():
     return render_template("nopeople.html")
@@ -82,7 +89,13 @@ def twopeople():
 
 @app.route("/map")
 def search():
-    return render_template("map.html")
+    for i in range(0,1000):
+        if i%10==0:
+            nofire()
+        else:
+            oneperson()
+
+    return #render_template("map.html")
 
 
 

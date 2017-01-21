@@ -8,11 +8,10 @@ appClarifai = ClarifaiApp("gxZl82Rccj9BDbO1py-zze9x2yXllO4K8wgtDfUv", "71dgic1At
 
 app = Flask(__name__)
 app.config["DEBUG"] = True  # Only include this while you are testing your app
-
 THRESHOLD = .7
-fire_keywords = set(["flame", "fire", "smoke", "heat", "explosion", "fireplace"])
-person_keywords = set(["people","adult","boy","girl", "man", "woman"])
-FOLDERS = ["pictures/raymond", "pictures/treefire", "pictures/no_one", "pictures/chilling"]
+fire_keywords = set(["flame", "fire", "smoke", "heat", "explosion"])
+person_keywords = set(["people", "adult","boy","girl", "man", "woman"])
+FOLDERS = ["pictures/raymond", "pictures/treefire", "pictures/chilling"]
 #default home page
 @app.route("/")
 def hello():
@@ -21,6 +20,7 @@ def hello():
 #clarifai stuff
 @app.route("/checkfire")
 def checkfire():
+    fires, people = 0, 0
 
     # get the general model
     model = appClarifai.models.get("general-v1.3")
@@ -43,31 +43,42 @@ def checkfire():
             if image_i >= len(contents):
                 image_i = -1
             image = ClImage(file_obj=open(contents[image_i], 'rb'))
+            if fires == 2 and folder == "pictures/treefire": continue # skip to save API call time, since fire never goes out in tree fire
             responses.append(model.predict([image]))
-            time.sleep(.9)
-        print len(responses)
+            print contents[image_i]
+        time.sleep(.9)
 
+        people = 0
         for response in responses:
             for i in range(0,len(response["outputs"][0]["data"]["concepts"])):
-                print response["outputs"][0]["data"]["concepts"][i]["name"]
                 concept = response["outputs"][0]["data"]["concepts"][i]
                 name, prob = concept["name"], concept["value"]
-                if name in fire_keywords and prob > THRESHOLD:
-                    print "success"
-                    print name
-                    #return render_template("firetriggered.html") # break
-    #print("entered loop")
-    #for i in range(0,len(response["outputs"][0]["data"]["concepts"])):
-        #print response["outputs"][0]["data"]["concepts"][i]["name"]
-
-        #concept = response["outputs"][0]["data"]["concepts"][i]
-        #name, prob = concept["name"], concept["value"]
-        #if name in fire_keywords: #and prob > THRESHOLD:
-            #print "success"
-            #print name
-            #return render_template("firetriggered.html")
+                if name in fire_keywords and fires < 2:
+                    fires += 1
+                    break
+                if name in person_keywords:
+                    people += 1
+                    break
+        print fires, people
+        update_file(fires, people)
 
     return render_template("hello.html")
+
+def update_file(fires, people):
+    text_file = open("static/testthis.txt", "w+")
+    if fires == 0: # case 1
+        output = 1
+    elif fires == 1 and people > 2: # case 2
+        output = 2
+    elif fires == 2 and people > 2:
+        output = 3
+    elif fires == 2 and people == 1:
+        output = 4
+    else:
+        output = -1
+        print "error!!!"
+    text_file.write("%s" % output)
+    text_file.close()
 
 #floor map updates
 @app.route("/nofire")

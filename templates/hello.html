@@ -1,15 +1,11 @@
 {% extends "base.html" %}
 {% block title %} Reading List {% endblock %}
 {% block body %}
-    <h1>Reading List</h1>
-    
-    <dl>
-      {% for key, value in api_data.iteritems() %}
-            <dt>{{ key }}</dt>
-            <dd>{{ value }}</dd>
-      {% endfor %}
-	</dl>
+    <h1>My Monitor</h1>
+    <h3>status: OK
+    </h3>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/hMtjGfr0tYs" frameborder="0" allowfullscreen></iframe>
     <p>This web app allows users to search for books and see how long it will take to read them!</p>
-    <a href="/search"><button class="launch-button">Search by Title</button></a>
-    <a href="/searchtime"><button class="launch-button">Search by Time</button></a>
+    <a href="/map"><button class="launch-button">Emergency Details</button></a>
+
 {% endblock %}

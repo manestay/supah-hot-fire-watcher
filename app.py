@@ -68,9 +68,9 @@ def update_file(fires, people):
     text_file = open("static/testthis.txt", "w+")
     if fires == 0: # case 1
         output = 1
-    elif fires == 1 and people > 2: # case 2
+    elif fires == 1 and people >= 2: # case 2
         output = 2
-    elif fires == 2 and people > 2:
+    elif fires == 2 and people >= 2:
         output = 3
     elif fires == 2 and people == 1:
         output = 4

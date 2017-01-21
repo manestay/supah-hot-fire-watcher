@@ -1,14 +1,11 @@
 from flask import Flask, jsonify, render_template, request
 import requests
-
-
 from clarifai.rest import ClarifaiApp
 
 appClarifai = ClarifaiApp("gxZl82Rccj9BDbO1py-zze9x2yXllO4K8wgtDfUv", "71dgic1AtUlwc8QX7nm6ppJojeJWqTi7pZ1K_6xy")
 
-
-
-
+THRESHOLD = .75
+fire_keywords = set(["flame", "smoke", "heat", "explosion"])
 
 app = Flask(__name__)
 app.config["DEBUG"] = True  # Only include this while you are testing your app
@@ -22,14 +19,17 @@ def hello():
     #response_dict = response.json()
     #print response["outputs"][0]["data"]["concepts"][0]["name"]
     for i in range(0,len(response["outputs"][0]["data"]["concepts"])):
-        name = response["outputs"][0]["data"]["concepts"][i]["name"]
-        if name == "flame" or name == "fire" or name 
+        concept = response["outputs"][0]["data"]["concepts"][i]
+        name, prob = concept["name"], concept["value"]
+        if name in fire_keywords and  prob > THRESHOLD:
+            print "PROCESSING!!!!"
+            #TODO: SAVE
 
     return render_template("hello.html", api_data=response)
 
 @app.route("/name")
 def name():
-	return "Your Name"
+    return "Your Name"
 
 @app.route("/search", methods=["POST", "GET"])
 def search():

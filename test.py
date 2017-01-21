@@ -13,7 +13,7 @@ response=model.predict([image])
 
 #response_dict = response.json()
 for i in range(0,len(response["outputs"][0]["data"]["concepts"])):
-        print response["outputs"][0]["data"]["concepts"][i]["name"]
+        print (response["outputs"][0]["data"]["concepts"][i]["name"])
 
 #import requests
 

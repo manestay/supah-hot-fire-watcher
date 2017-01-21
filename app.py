@@ -65,7 +65,7 @@ def checkfire():
     return render_template("hello.html")
 
 def update_file(fires, people):
-    text_file = open("static/testthis.txt", "w+")
+    text_file = open("static/testthis.txt", "w")
     if fires == 0: # case 1
         output = 1
     elif fires == 1 and people >= 2: # case 2

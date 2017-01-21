@@ -10,7 +10,7 @@ def getfiles(dirpath):
 def main():
         rootdir = 'pictures/chilling'
         for f in getfiles(rootdir):
-            print f
+            print (f)
 
 if __name__ == '__main__':
         main()

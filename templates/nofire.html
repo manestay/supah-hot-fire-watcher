@@ -1,10 +1,48 @@
 {% extends "base.html" %}
 {% block title %} Reading List {% endblock %}
 {% block body %}
+	<!--<META HTTP-EQUIV="refresh" CONTENT="1"> -->
+	<!--<META HTTP-EQUIV="refresh" CONTENT="1; URL=http://localhost:5000/nofire"> -->
+	<head>
+		<script type="text/javascript" src="https://ajax.microsoft.com/ajax/jQuery/jquery-1.4.2.min.js">
+		</script>
+		
+	</head>
+	<script>
+		setTimeout(update,1000)
+		function update(){
+			//$.get("http://localhost:5000/static/testthis.txt",  function( data ) {
+			$.ajax({
+			  url: "http://localhost:5000/static/testthis.txt",
+			  cache: false,
+			  dataType: "text",
+			  success: function( data, textStatus, jqXHR ) {
+			
+					console.log("data:")
+					console.log(data)
+					if(data === "1"){
+				  		$("#mappic").attr("src","../static/nofire.jpg");
+					}
+					if(data === "2"){
+				  		$("#mappic").attr("src","../static/nopeople.png");
+					}
+					if(data === "3"){
+				  		$("#mappic").attr("src","../static/oneperson.png");
+					}
+					if(data === "4"){
+				  		$("#mappic").attr("src","../static/twopeople.png");
+					}
+				}
+			});
+			setTimeout(update,1000)
+		}
+		
+
+	</script>
     <h1>Fire location and emergency details</h1>
     <h3>status: EMERGENCY</h3>
     <h4>fire detected in room 819, follow evacuation route</h4>
-    <img src="../static/nofire.jpg" alt="Floor Plan" style="width:600px;height:600px;">
+    <img src="../static/nofire.jpg" id= "mappic" alt="Floor Plan" style="width:600px;height:600px;">
     <p>Map</p>
     <a href="/"><button class="launch-button">back to My Monitor</button></a>
 

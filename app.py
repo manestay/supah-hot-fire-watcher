@@ -56,7 +56,6 @@ def checkfire():
                     print "success"
                     print name
                     #return render_template("firetriggered.html") # break
-
     #print("entered loop")
     #for i in range(0,len(response["outputs"][0]["data"]["concepts"])):
         #print response["outputs"][0]["data"]["concepts"][i]["name"]
@@ -86,15 +85,6 @@ def oneperson():
 @app.route("/twopeople")
 def twopeople():
     return render_template("twopeople.html")
-
-@app.route("/map")
-def search():
-    return render_template("map.html")
-
-
-
-
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")

@@ -1,10 +1,27 @@
 {% extends "base.html" %}
 {% block title %} Reading List {% endblock %}
 {% block body %}
+
+
+	we have a single html page which autorefreshes every second
+	upon autorefreshing, it reads in a textfile with instructions on which picture to render.
+
+
+
+
     <h1>Fire location and emergency details</h1>
     <h3>status: EMERGENCY</h3>
     <h4>fire detected in room 819, follow evacuation route</h4>
-    <img src="http://www.wikicu.com/images/3/3c/Mcb_8001.jpg" alt="Floor Plan" style="width:600px;height:600px;">
+
+	{% for i in range(0,20) %}
+		{% if i%4==0: %}
+		<img src="../static/twopeople.png" alt="Floor Plan" style="width:600px;height:600px;">
+		{% endif %}
+		{% if i%4==2: %}
+		<img src="../static/nofire.jpg" alt="Floor Plan" style="width:600px;height:600px;">
+		{% endif %}
+	{% endfor %}
+    
     <p>Map</p>
     <a href="/"><button class="launch-button">back to My Monitor</button></a>
 

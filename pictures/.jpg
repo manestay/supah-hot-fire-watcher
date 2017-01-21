@@ -1,0 +1,7 @@
+import os, re
+rootdir = '.'
+
+for subdir, dirs, files in os.walk(rootdir):
+    for f in files:
+        new_name = f[-10:-8] + ".jpg"
+        os.rename(f, new_name)

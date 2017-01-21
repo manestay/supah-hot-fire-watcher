@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %} Search {% endblock %}
+{% block body %}
+    <h1>Search by Time</h1>  
+    <h3>Find books that take a certain time to read</h3>  
+    <form action="/searchtime" method="POST">
+        <div class="small-10 columns">
+            <input type="text" placeholder="Please enter a book category such as Health" id="user_search" name="user_search" required/>
+            <input type="number" step="any" min="0" placeholder="Please enter the number of hours such as 3.5" id="user_searchtime" name="user_searchtime" required/>
+        </div>
+        <div class="small-2 columns">
+            <button class="search-button" type="submit">Search</button>
+        </div>
+    </form>
+    <a href="/search"><button class="back-to-search" >Regular Search</button></a>
+    {% block results %}{% endblock %}
+{% endblock %}

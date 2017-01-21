@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %} Search {% endblock %}
+{% block body %}
+    <h1>Book Search</h1>  
+    <form action="/search" method="POST">
+        <div class="small-10 columns">
+            <input type="text" placeholder="Search for a book" id="user_search" name="user_search" required/>
+        </div>
+        <div class="small-2 columns">
+            <button class="postfix search-button" type="submit">Search</button>
+        </div>
+    </form>
+    <a href="/searchtime"><button class="back-to-searchtime" >Search by time</button></a>
+    {% block results %}{% endblock %}
+{% endblock %}

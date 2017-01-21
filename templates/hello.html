@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %} Reading List {% endblock %}
+{% block body %}
+    <h1>Reading List</h1>
+    
+    <dl>
+      {% for key, value in api_data.iteritems() %}
+            <dt>{{ key }}</dt>
+            <dd>{{ value }}</dd>
+      {% endfor %}
+	</dl>
+    <p>This web app allows users to search for books and see how long it will take to read them!</p>
+    <a href="/search"><button class="launch-button">Search by Title</button></a>
+    <a href="/searchtime"><button class="launch-button">Search by Time</button></a>
+{% endblock %}

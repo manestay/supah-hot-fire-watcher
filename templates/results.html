@@ -1,0 +1,38 @@
+{% extends "search.html" %}
+{% block results %}
+<style>
+.results {
+    text-align: left;
+    margin-top: 100px;
+}
+
+li {
+    list-style-type: none;
+    padding-bottom: 25px;
+}
+</style>
+<div class="results">
+	{% if api_data["totalItems"] %}
+		<ul>
+		    {% for book in api_data["items"] %}
+		        <li>
+		            <a href={{ book.accessInfo.webReaderLink }}><h3>{{ book.volumeInfo.title }}</h3></a>
+		            <h5>
+		            	{% if book.volumeInfo.pageCount:%} 
+			                {% for author in book.volumeInfo.authors %}
+			                    <ul>{{ author }}</ul>
+			                {% endfor %}
+		                {% endif %}
+
+		                {% if book.volumeInfo.pageCount:%}              
+		                	<ul><strong>{{(book.volumeInfo.pageCount/45) | round(1, 'common' ) }} hours reading time</strong></ul>
+		                {% endif %}        
+		            </h5>
+		        </li>
+		    {% endfor %}
+		</ul>
+    {% else %}
+        <p>There were no books found.</p>
+    {% endif %}
+</div>
+{% endblock %}

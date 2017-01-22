@@ -1,8 +1,11 @@
+#!/usr/bin/python
 from sort_by_date import getfiles
 import time
+import subprocess
 from clarifai.rest import Image as ClImage
 from clarifai.rest import ClarifaiApp
 from send_text import send
+
 
 appClarifai = ClarifaiApp("gxZl82Rccj9BDbO1py-zze9x2yXllO4K8wgtDfUv", "71dgic1AtUlwc8QX7nm6ppJojeJWqTi7pZ1K_6xy")
 THRESHOLD = .8
@@ -80,5 +83,8 @@ for image_i in range(len(folder_contents['pictures/chilling'])): # each run is o
     print (" ")
     update_file(fires, people)
 
+print ("start")
+subprocess.call("./send.sh", shell=True)
+print ("end")
 time.sleep(18)
 update_file(0,0) # reset output file to 1

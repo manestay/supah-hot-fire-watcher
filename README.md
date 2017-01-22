@@ -1,7 +1,7 @@
 ## This AI could save you and your friends' lives.
 
 ## Inspiration
-We wanted to use powerful neural network to observe and interact with the world in a novel way that also saves lives.  
+We wanted to use powerful neural networks to observe and interact with the world in a novel way that also saves lives.  
 
 ## What it does
 It's your personal AI that detects the exact moment a fire starts in a building, alerts you and residents, and checks that no one is left behind.  Given multiple video streams of rooms such as security or footage, this web app detects if a fire becomes present in any of the videos.  Using intelligently trained neural networks, the image of a fire can be detected and an alert text message is sent to building residents. Additionally, a floor plan map updates in real time displaying what room the fire is in as well as what rooms still contain people, and displays exit routes.  
@@ -18,6 +18,5 @@ Building an application that has real usefulness.
 ## What I learned
 I learned about combining front end and back end, as well as the value of presentation.
 
-## What's next for Supah Hot Fire Watcher
+## What's next for FireMonitor.AI
 Use Clarifai further and train data sets specifically to detect fire even more accurately and quickly.  Process live video directly, maybe using Facebook live stream.
-

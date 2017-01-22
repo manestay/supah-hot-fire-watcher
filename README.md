@@ -1,7 +1,7 @@
 ## This AI could save you and your friends' lives.
 
 ## Inspiration
-We wanted to use powerful AI to observe and interact with the world in a novel way that also saves lives.  
+We wanted to use powerful neural network to observe and interact with the world in a novel way that also saves lives.  
 
 ## What it does
 It's your personal AI that detects the exact moment a fire starts in a building, alerts you and residents, and checks that no one is left behind.  Given multiple video streams of rooms such as security or footage, this web app detects if a fire becomes present in any of the videos.  Using intelligently trained neural networks, the image of a fire can be detected and an alert text message is sent to building residents. Additionally, a floor plan map updates in real time displaying what room the fire is in as well as what rooms still contain people, and displays exit routes.  

@@ -4,8 +4,18 @@
 	<head>
 		<script type="text/javascript" src="https://ajax.microsoft.com/ajax/jQuery/jquery-1.4.2.min.js">
 		</script>
-		
+		<img src="../static/theFireMonitor.png" id= "thefiremonitor" style="width:280px;height:60px;">	
 	</head>
+
+
+	<script>
+		$(document).ready(function() {
+		  $('#play-video').on('click', function(ev) {	 
+		    $("#video")[0].src += "&autoplay=1";
+		    ev.preventDefault();
+		  });
+		});
+	</script>	
 	<script>
 		setTimeout(update,1000)
 		function update(){
@@ -45,11 +55,17 @@
 		
 
 	</script>
-    <img src="../static/statusok.jpg" id= "statuspic" style="width:700px;height:60px;">
-    <iframe width="900" height="610" src="https://www.youtube.com/embed/yVEncL3NpnU" frameborder="0" allowfullscreen></iframe>
+    <img src="../static/statusok.jpg" id= "statuspic" style="width:700px;height:60px;" hspace="40">
+
+
+   
+ 
+
+    <iframe id="video" width="900" height="610" vspace="40" src="https://www.youtube.com/embed/yVEncL3NpnU?rel=0" frameborder="0" allowfullscreen></iframe>
     <h3> Map: McBain Hall  Floor: 8 <h3>
     <h3>Rooms 830, 808, and 819, 822 are being monitored</h3>
-    <a> <button class="launch-button">Start Monitoring</button></a>
+
+     <a id="play-video" href="#"><button class="launch-button">Start Monitoring</button></a><br />
     <a href="/nofire"><button class="launch-button">Building Map</button></a>
     
 

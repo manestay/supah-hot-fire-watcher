@@ -1,11 +1,12 @@
 {% extends "base.html" %}
-{% block title %} Reading List {% endblock %}
+{% block title %} firemonitor.ai {% endblock %}
 {% block body %}
 	<head>
 		<script type="text/javascript" src="https://ajax.microsoft.com/ajax/jQuery/jquery-1.4.2.min.js">
 		</script>
-		
+		<img src="../static/theFireMonitor.png" id= "thefiremonitor" style="width:280px;height:60px;" vspace="10">
 	</head>
+
 	<script>
 		setTimeout(update,1000)
 		function update(){
@@ -27,12 +28,14 @@
 				  		$("#mappic").attr("src","../static/status2.png");
 				  		$("#statuspic").attr("src","../static/statuse.jpg");
 				  		$("#statuspic").attr("style","width:700px;height:60px;");
+	
 					}
 					if(data === "3"){
 				  		$("#mappic").attr("src","../static/status3.png");
 				  		$("#statuspic").attr("src","../static/statuse.jpg");
 				  		$("#statuspic").attr("style","width:700px;height:60px;");
 					}
+
 					if(data === "4"){
 				  		$("#mappic").attr("src","../static/status4.png");
 				  		$("#statuspic").attr("src","../static/statuse.jpg");
@@ -45,11 +48,10 @@
 		
 
 	</script>
-    <h1>Map: McBain Hall  Floor: 8<h1>
-    <img src="../static/statusok.jpg" id= "statuspic" style="width:700px;height:60px;">
-      <p>Map</p>
-    <img src="../static/status1.jpg" id= "mappic" alt="Floor Plan" style="width:600px;height:600px;">
-  
+    <img src="../static/statusok.jpg" id= "statuspic" style="width:700px;height:60px;" hspace="40">
+   
+    <img src="../static/status1.jpg" id= "mappic" alt="Floor Plan" style="width:600px;height:600px;" vspace="10">
+    <p>Map: McBain Hall  Floor: 8   Updates every second</p>
     <a href="/"><button class="launch-button">back to My Monitor</button></a>
 
 {% endblock %}

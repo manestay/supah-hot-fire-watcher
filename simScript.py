@@ -5,7 +5,7 @@ from clarifai.rest import ClarifaiApp
 from send_text import send
 
 appClarifai = ClarifaiApp("gxZl82Rccj9BDbO1py-zze9x2yXllO4K8wgtDfUv", "71dgic1AtUlwc8QX7nm6ppJojeJWqTi7pZ1K_6xy")
-THRESHOLD = .7
+THRESHOLD = .9
 fire_keywords = set(["flame", "fire", "smoke", "heat", "explosion"])
 person_keywords = set(["adult","boy", "man", "woman"])
 person_keywords = set(["adult","boy", "man"])
@@ -72,7 +72,7 @@ for image_i in range(len(folder_contents['pictures/chilling'])): # each run is o
             if name in fire_keywords and fires < 2:
                 fires += 1
                 break
-            if name in person_keywords:
+            if name in person_keywords and prob > THRESHOLD:
                 people += 1
                 break
     print (fires, "fires", people, "people detected")
@@ -80,4 +80,5 @@ for image_i in range(len(folder_contents['pictures/chilling'])): # each run is o
     print (" ")
     update_file(fires, people)
 
+time.sleep(10)
 update_file(0,0) # reset output file to 1
